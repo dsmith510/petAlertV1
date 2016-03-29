@@ -50,7 +50,7 @@
 		CD29301A1C5BC9AB00DC1DE9 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2930191C5BC9AB00DC1DE9 /* Post.m */; };
 		CD29301D1C5BC9C500DC1DE9 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = CD29301C1C5BC9C500DC1DE9 /* Comment.m */; };
 		CD2930201C5D27AC00DC1DE9 /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD29301F1C5D27AC00DC1DE9 /* LocationViewController.m */; };
-		CD2930221C5EEA9B00DC1DE9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD2930211C5EEA9B00DC1DE9 /* Main.storyboard */; };
+		CD7EF9471CAB453700BECB03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD7EF9451CAB453700BECB03 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,7 +125,7 @@
 		CD29301C1C5BC9C500DC1DE9 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		CD29301E1C5D27AC00DC1DE9 /* LocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationViewController.h; sourceTree = "<group>"; };
 		CD29301F1C5D27AC00DC1DE9 /* LocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationViewController.m; sourceTree = "<group>"; };
-		CD2930211C5EEA9B00DC1DE9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../../../../.Trash/Main.storyboard; sourceTree = "<group>"; };
+		CD7EF9461CAB453700BECB03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,7 +239,7 @@
 		CD292FC61C5BB6C100DC1DE9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				CD2930211C5EEA9B00DC1DE9 /* Main.storyboard */,
+				CD7EF9451CAB453700BECB03 /* Main.storyboard */,
 				CD2930131C5BBD1300DC1DE9 /* LoginAndRegistration.storyboard */,
 				CD292FAE1C5BB5FE00DC1DE9 /* LaunchScreen.storyboard */,
 			);
@@ -418,7 +418,7 @@
 				CD2930141C5BBD1300DC1DE9 /* LoginAndRegistration.storyboard in Resources */,
 				CD292FB01C5BB5FE00DC1DE9 /* LaunchScreen.storyboard in Resources */,
 				CD292FAD1C5BB5FE00DC1DE9 /* Assets.xcassets in Resources */,
-				CD2930221C5EEA9B00DC1DE9 /* Main.storyboard in Resources */,
+				CD7EF9471CAB453700BECB03 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,6 +480,14 @@
 				CD292FAF1C5BB5FE00DC1DE9 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		CD7EF9451CAB453700BECB03 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CD7EF9461CAB453700BECB03 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -642,6 +650,7 @@
 				CD292FC11C5BB5FE00DC1DE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CD292FC21C5BB5FE00DC1DE9 /* Build configuration list for PBXNativeTarget "petAlertV1Tests" */ = {
 			isa = XCConfigurationList;
@@ -650,6 +659,7 @@
 				CD292FC41C5BB5FE00DC1DE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
