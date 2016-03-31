@@ -91,6 +91,7 @@ self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
             placemark.thoroughfare,placemark.locality, placemark.administrativeArea];
         self.address.text = address;
             self.previousAddress = address;
+            self.selectedAddress = address;
         }
     }];
     
@@ -100,6 +101,7 @@ self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 - (IBAction)onDoneButtonTapped:(UIBarButtonItem *)sender {
     
     [self.delegate didSelectLocation:self.selectedLocation];
+    [self.delegate didSelectAddress:self.selectedAddress];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -15,6 +15,7 @@
 @protocol SelectedLocationDelegate <NSObject>
 
 -(void)didSelectLocation:(CLLocation *)selectedLocation;
+-(void)didSelectAddress: (NSString *)selectedAddress;
   
 @end
 
@@ -22,6 +23,7 @@
 
 @property (nonatomic, assign) id <SelectedLocationDelegate> delegate;
 @property CLLocation *selectedLocation;
+@property NSString *selectedAddress;
 
 
 

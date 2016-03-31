@@ -25,10 +25,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *sharePostButton;
 @property (weak, nonatomic) IBOutlet UIButton *locationButton;
 
+
 // Properties
 @property UIImage *postImage;
 @property User *currentUser;
 @property PFGeoPoint *locationSelectedByUser;
+@property NSString *locationAddress;
 @end
 
 @implementation NewPostViewController
@@ -42,11 +44,13 @@
     self.currentUser = [User currentUser];
     self.sharePostButton.enabled = NO;
     self.sharePostButton.alpha = 0.3;
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
+    [self.view addGestureRecognizer:tapGesture];
 
-    
+}
 
-    
-    
+-(void)viewDidAppear:(BOOL)animated {
 // set delegates for textfields
     self.descriptionTextView.delegate = self;
     
@@ -60,14 +64,17 @@
     self.contactPhoneTextView.textColor = [UIColor grayColor];
     self.contactPhoneTextView.tintColor = [UIColor blackColor];
     
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
-    [self.view addGestureRecognizer:tapGesture];
-
+    
+//change button to location address selected by user
+    
+    if (self.locationAddress != nil) {
+           [self.locationButton setTitle:self.locationAddress forState:UIControlStateNormal];
+    }
+ 
     
 //    LocationViewController *vc = [[LocationViewController alloc] init];
 //    vc.delegate = self;
 }
-
 -(void)dismissKeyboard:(id)sender {
     [self.view endEditing:YES];
 }
@@ -95,6 +102,7 @@
     } else if (textView.tag == 2 && [textView.text isEqualToString:@""]) {
 
         textView.text = @"Add a phone number";
+        textView.textColor = [UIColor lightGrayColor];
     }
     
     // Dismiss keyboard
@@ -108,6 +116,11 @@
      ;
     self.locationSelectedByUser = point;
 //    self.locationButton.titleLabel =
+    
+}
+
+-(void)didSelectAddress:(NSString *)selectedAddress {
+    self.locationAddress = selectedAddress;
     
 }
 - (IBAction)onSelectPhotoButtonTapped:(id)sender {
