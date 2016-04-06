@@ -46,23 +46,13 @@
     self.sharePostButton.alpha = 0.3;
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
+    [self setTextViewPlaceHolderText];
     [self.view addGestureRecognizer:tapGesture];
 
 }
 
 -(void)viewDidAppear:(BOOL)animated {
-// set delegates for textfields
-    self.descriptionTextView.delegate = self;
-    
-    self.descriptionTextView.text = @"Add a description e.g. color, breed, sex, distinguishing marks, etc.";
-    self.descriptionTextView.textColor = [UIColor grayColor];
-    self.descriptionTextView.tintColor = [UIColor grayColor];
-    
-    self.contactPhoneTextView.delegate = self;
-    
-    self.contactPhoneTextView.text = @"Add a phone number";
-    self.contactPhoneTextView.textColor = [UIColor grayColor];
-    self.contactPhoneTextView.tintColor = [UIColor blackColor];
+
     
     
 //change button to location address selected by user
@@ -70,10 +60,36 @@
     if (self.locationAddress != nil) {
            [self.locationButton setTitle:self.locationAddress forState:UIControlStateNormal];
     }
+    else
+    {
+        [self.locationButton setTitle:@"Select a location" forState:UIControlStateNormal];
+    }
  
     
 //    LocationViewController *vc = [[LocationViewController alloc] init];
 //    vc.delegate = self;
+}
+
+-(void)setTextViewPlaceHolderText{
+   
+    self.descriptionTextView.text = @"Add a description e.g. color, breed, sex, distinguishing marks, etc.";
+    self.descriptionTextView.textColor = [UIColor grayColor];
+    self.descriptionTextView.tintColor = [UIColor grayColor];
+    [self.descriptionTextView resignFirstResponder];
+    
+    [self.contactPhoneTextView resignFirstResponder];
+    self.contactPhoneTextView.text = @"Add a phone number";
+    self.contactPhoneTextView.textColor = [UIColor grayColor];
+    self.contactPhoneTextView.tintColor = [UIColor blackColor];
+    
+}
+-(void)refreshNewPostTab { 
+    [self setTextViewPlaceHolderText];
+    self.locationAddress = nil;
+    [self.photoButton setBackgroundImage:nil forState:UIControlStateNormal];
+    [self.photoButton setTitle:@"Select Photo" forState:UIControlStateNormal];
+    [self.statusSegmentedControl setSelectedSegmentIndex:0];
+    
 }
 -(void)dismissKeyboard:(id)sender {
     [self.view endEditing:YES];
@@ -88,7 +104,7 @@
         
     } else if ([textView.text isEqualToString:@"Add a phone number"]) {
         
-        textView.text=@"";
+        textView.text= @"";
         textView.textColor = [UIColor blackColor];
     }
     
@@ -304,7 +320,7 @@
     }];
     
     
-
+    [self refreshNewPostTab];
     [self.tabBarController setSelectedIndex:0];
     
     

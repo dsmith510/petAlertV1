@@ -51,6 +51,7 @@
 		CD29301D1C5BC9C500DC1DE9 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = CD29301C1C5BC9C500DC1DE9 /* Comment.m */; };
 		CD2930201C5D27AC00DC1DE9 /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD29301F1C5D27AC00DC1DE9 /* LocationViewController.m */; };
 		CD7EF9471CAB453700BECB03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD7EF9451CAB453700BECB03 /* Main.storyboard */; };
+		CDC25ED91CB47F990086110F /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC25ED81CB47F990086110F /* TabBarController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +127,8 @@
 		CD29301E1C5D27AC00DC1DE9 /* LocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationViewController.h; sourceTree = "<group>"; };
 		CD29301F1C5D27AC00DC1DE9 /* LocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationViewController.m; sourceTree = "<group>"; };
 		CD7EF9461CAB453700BECB03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CDC25ED71CB47F990086110F /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
+		CDC25ED81CB47F990086110F /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +262,8 @@
 				CD2930191C5BC9AB00DC1DE9 /* Post.m */,
 				CD29301B1C5BC9C500DC1DE9 /* Comment.h */,
 				CD29301C1C5BC9C500DC1DE9 /* Comment.m */,
+				CDC25ED71CB47F990086110F /* TabBarController.h */,
+				CDC25ED81CB47F990086110F /* TabBarController.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -450,6 +455,7 @@
 				CD2930201C5D27AC00DC1DE9 /* LocationViewController.m in Sources */,
 				CD292FDF1C5BB7DE00DC1DE9 /* SearchViewController.m in Sources */,
 				CD292FAB1C5BB5FE00DC1DE9 /* petAlertV1.xcdatamodeld in Sources */,
+				CDC25ED91CB47F990086110F /* TabBarController.m in Sources */,
 				CD29301D1C5BC9C500DC1DE9 /* Comment.m in Sources */,
 				CD29301A1C5BC9AB00DC1DE9 /* Post.m in Sources */,
 			);

@@ -77,6 +77,7 @@
                                                     <constraint firstAttribute="height" constant="33" id="CDT-ZR-7x0"/>
                                                     <constraint firstAttribute="width" constant="231" id="ISf-EV-yRE"/>
                                                 </constraints>
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <variation key="default">
@@ -91,6 +92,9 @@
                                                         <include reference="ISf-EV-yRE"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <outlet property="delegate" destination="oQW-Le-xd6" id="1WW-Bl-5lV"/>
+                                                </connections>
                                             </textView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="W7L-fT-4zN">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -99,6 +103,7 @@
                                                     <constraint firstAttribute="height" constant="95" id="Lg3-z7-TF8"/>
                                                     <constraint firstAttribute="width" constant="231" id="if2-fd-Ejo"/>
                                                 </constraints>
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <variation key="default">
@@ -113,6 +118,9 @@
                                                         <include reference="if2-fd-Ejo"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <outlet property="delegate" destination="oQW-Le-xd6" id="gRE-Ah-aNk"/>
+                                                </connections>
                                             </textView>
                                         </subviews>
                                         <constraints>
@@ -1173,7 +1181,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="Ls8-vC-596">
             <objects>
-                <tabBarController storyboardIdentifier="main" id="kVU-nn-AT2" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="main" id="kVU-nn-AT2" customClass="TabBarController" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="6hO-qy-ccQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
