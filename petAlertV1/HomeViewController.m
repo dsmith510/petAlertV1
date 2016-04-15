@@ -48,17 +48,23 @@
     
 // Instantiate array
     self.posts = [NSMutableArray new];
+    self.usersLocation = [PFGeoPoint new];
 
 
 // Find user's current location
     [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint * _Nullable geoPoint, NSError * _Nullable error) {
         if (!error) {
+            NSLog(@"User is currently at %f, %f", geoPoint.latitude, geoPoint.longitude);
             self.usersLocation = geoPoint;
-            [self loadView];
+//            [self loadView];
+            [self queryForPostsNearUser];
+        }
+        else {
+            NSLog(@"%@", error.localizedDescription);
         }
     }];
     
-    [self queryForPostsNearUser];
+    
     
 }
 
@@ -75,22 +81,24 @@
     [self.refreshControl beginRefreshing];
 }
 
--(PFQuery *) queryForPostsNearUser {
+-(void) queryForPostsNearUser {
     if (!self.usersLocation) {
-        return nil;
+        NSLog(@"error");
+        return;
     }
     PFGeoPoint *userGeopoint = self.usersLocation;
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query whereKey:@"geoPoint" nearGeoPoint:userGeopoint withinMiles:100];
+    [query whereKey:@"location" nearGeoPoint:userGeopoint withinMiles:100];
     [query orderByDescending:@"createdAt"];
     query.limit = 20;
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         for (Post *post in objects) {
             [self.posts addObject:post];
         }
+        [self.tableView reloadData];
     }];
     
-    return query;
+    return;
 }
 
 #pragma mark - PostTableview Delegate methods
@@ -105,6 +113,10 @@
     return 1;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 513;
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
@@ -112,8 +124,11 @@
     cell.delegate = self;
     
     cell.post = post;
-    cell.postImageView.file = post.image;
-    [cell.postImageView loadInBackground];
+    [post.image getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
+        cell.postImageView.image = [UIImage imageWithData:data];
+    }];
+    
+//    [cell.postImageView loadInBackground];
     cell.numberOfCommentsLabel.text = [NSString stringWithFormat:@"%@",[post.numberOfComments stringValue]];
     cell.captionTextView.text = post.caption;
     

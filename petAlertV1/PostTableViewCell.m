@@ -15,7 +15,7 @@
 @implementation PostTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    self.currentUser = [User currentUser];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
