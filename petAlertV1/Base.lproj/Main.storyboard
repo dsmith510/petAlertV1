@@ -843,8 +843,8 @@
                                                         <constraint firstAttribute="height" constant="21" id="0MQ-Rn-sKP"/>
                                                         <constraint firstAttribute="width" constant="204" id="obN-wg-JP4"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                    <color key="textColor" red="0.64124131240000004" green="0.96332965680000004" blue="0.8658834071" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
@@ -865,8 +865,8 @@
                                                         <constraint firstAttribute="width" constant="77" id="QGl-ps-t5S"/>
                                                         <constraint firstAttribute="height" constant="21" id="bI5-wL-XzA"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                    <color key="textColor" red="0.64124131240000004" green="0.96332965680000004" blue="0.8658834071" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
                                                         <mask key="constraints">

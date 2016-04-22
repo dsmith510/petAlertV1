@@ -141,14 +141,11 @@
     PostHeaderTableViewCell *postHeaderCell = [tableView dequeueReusableCellWithIdentifier:@"PostHeaderCell"];
     Post *post = self.posts[section];
     postHeaderCell.alertLabel.text = post.petStatus;
-    postHeaderCell.dateLabel.text = [NSString stringWithFormat:@ "%@", post.createdAt];
+    NSDateFormatter *dateFormater = [NSDateFormatter new];
+    [dateFormater setDateFormat:@"MM/dd/yyyy, h:mm a"];
+    NSString *formattedString = [dateFormater stringFromDate:post.createdAt];
+    postHeaderCell.dateLabel.text = [NSString stringWithFormat:@ "%@", formattedString];
     
-    
-    //    NSDateFormatter *dateFormatter = [NSDateFormatter new];
-    //    [dateFormatter setDateFormat:@"MMM dd"];
-    //    //    [dateFormatter setTimeStyle:NSDateIntervalFormatterNoStyle];
-    //    NSString *formattedDateString = [dateFormatter stringFromDate:activity.date];
-    //   postHeaderCell.dateLabel.text = [NSString stringWithFormat:@"%@",formattedDateString];
     return postHeaderCell;
 }
 
