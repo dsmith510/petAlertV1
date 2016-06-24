@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kVU-nn-AT2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kVU-nn-AT2">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -18,13 +18,102 @@
                     <view key="view" contentMode="scaleToFill" id="Ii8-N6-Ygb">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="98" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GE4-6P-jFr">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellID" rowHeight="98" id="ILQ-6X-Oqf">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ILQ-6X-Oqf" id="8mp-pK-MN8">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="97.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="W8j-4j-WkC" id="uOb-em-MZ5"/>
+                                    <outlet property="delegate" destination="W8j-4j-WkC" id="wVt-hr-Uv7"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QHM-Af-fNB">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.64124131240000004" green="0.96332965680000004" blue="0.8658834071" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Search">
+                                    <color key="titleColor" red="0.99673958333333335" green="0.99673958333333335" blue="0.99673958333333335" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="304" y="451" width="63" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="onSearchButtonTapped:" destination="W8j-4j-WkC" eventType="touchUpInside" id="Gje-Uk-dzd"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iy4-mV-0i1">
+                                <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="38" y="451" width="242" height="30"/>
+                                </variation>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GE4-6P-jFr" firstAttribute="top" secondItem="Ii8-N6-Ygb" secondAttribute="top" id="KKZ-CZ-pGp"/>
+                            <constraint firstItem="GE4-6P-jFr" firstAttribute="leading" secondItem="Ii8-N6-Ygb" secondAttribute="leading" id="SCX-Db-ewm"/>
+                            <constraint firstAttribute="trailing" secondItem="GE4-6P-jFr" secondAttribute="trailing" id="Xhv-Vr-u1c"/>
+                            <constraint firstAttribute="bottom" secondItem="GE4-6P-jFr" secondAttribute="bottom" id="f9x-rX-h9C">
+                                <variation key="widthClass=compact" constant="190"/>
+                            </constraint>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="GE4-6P-jFr"/>
+                                <exclude reference="QHM-Af-fNB"/>
+                                <exclude reference="iy4-mV-0i1"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="KKZ-CZ-pGp"/>
+                                <exclude reference="SCX-Db-ewm"/>
+                                <exclude reference="Xhv-Vr-u1c"/>
+                                <exclude reference="f9x-rX-h9C"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="GE4-6P-jFr"/>
+                                <include reference="QHM-Af-fNB"/>
+                                <include reference="iy4-mV-0i1"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="KKZ-CZ-pGp"/>
+                                <include reference="SCX-Db-ewm"/>
+                                <include reference="Xhv-Vr-u1c"/>
+                                <include reference="f9x-rX-h9C"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="BD8-Wi-AdY"/>
+                    <navigationItem key="navigationItem" id="BD8-Wi-AdY">
+                        <nil key="title"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="locationTextField" destination="iy4-mV-0i1" id="orZ-CN-EhI"/>
+                        <outlet property="searchDisplayController" destination="a85-gC-izX" id="ZL2-tO-q7Q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8lA-kX-6q6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="a85-gC-izX">
+                    <connections>
+                        <outlet property="delegate" destination="W8j-4j-WkC" id="Acg-6f-UwI"/>
+                        <outlet property="searchContentsController" destination="W8j-4j-WkC" id="cHq-Fl-zOV"/>
+                        <outlet property="searchResultsDataSource" destination="W8j-4j-WkC" id="C06-WS-r9e"/>
+                        <outlet property="searchResultsDelegate" destination="W8j-4j-WkC" id="Le1-XQ-9fk"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="4036.5" y="2053"/>
+            <point key="canvasLocation" x="4038" y="2053"/>
         </scene>
         <!--New Post View Controller-->
         <scene sceneID="k3R-RG-q43">
@@ -572,11 +661,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B3r-Hv-gjN">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B3r-Hv-gjN">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostHeaderCell" id="8Sn-RK-tHn" customClass="PostHeaderTableViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PostHeaderCell" id="8Sn-RK-tHn" customClass="PostHeaderTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Sn-RK-tHn" id="Q0Y-YL-ZZh">
@@ -1118,6 +1207,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="animalImageView" destination="4q4-sl-Ici" id="zp9-zV-Bdi"/>
                                             <outlet property="captionTextView" destination="2xr-77-1QM" id="XeP-Io-XWz"/>
                                             <outlet property="commentButton" destination="rf9-oX-EWV" id="wRg-Pf-v3c"/>
                                             <outlet property="contactButton" destination="rBn-JD-eJ7" id="2go-6x-b0N"/>
@@ -1125,7 +1215,6 @@
                                             <outlet property="locationLabel" destination="IE8-NJ-bBS" id="GWI-9X-tSe"/>
                                             <outlet property="moreButton" destination="XoX-62-12X" id="PLe-aw-ISA"/>
                                             <outlet property="numberOfCommentsLabel" destination="3mk-KI-cCl" id="ALM-uS-ipR"/>
-                                            <outlet property="postImageView" destination="4q4-sl-Ici" id="IrQ-yc-KDe"/>
                                             <outlet property="shareButton" destination="Z0v-qG-Mty" id="XQ3-fS-RVd"/>
                                             <outlet property="usernameLabel" destination="Kee-RX-chf" id="fK0-5H-3sk"/>
                                         </connections>

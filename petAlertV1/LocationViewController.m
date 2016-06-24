@@ -58,6 +58,8 @@ self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
       self.mapView.showsUserLocation = true;
     
 }
+
+
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     CLLocation *location = locations.firstObject;
     self.mapView.centerCoordinate = location.coordinate;
@@ -71,6 +73,7 @@ self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     NSLog(@"%@", error);
 }
 
+// updates location as user drags map
 -(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
     CLLocation *location = [[CLLocation alloc] initWithLatitude:mapView.centerCoordinate.latitude longitude:mapView.centerCoordinate.longitude];
     self.selectedLocation = [CLLocation new];
@@ -78,6 +81,8 @@ self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [self geoCode:location];
     
 }
+
+// converts coordinates into an address that will be displayed to the user
 -(void)geoCode:(CLLocation *)location{
     
     [self.geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {

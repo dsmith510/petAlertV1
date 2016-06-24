@@ -14,6 +14,7 @@
 #import "User.h"
 #import <Social/Social.h>
 #import "LocationViewController.h"
+#import "Animal.h"
 
 
 @interface NewPostViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UIActionSheetDelegate,SelectedLocationDelegate>
@@ -34,7 +35,9 @@
 @end
 
 @implementation NewPostViewController
-- (void)viewDidLoad {
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
 // change the appearance of the navigation bar
@@ -51,7 +54,8 @@
 
 }
 
--(void)viewDidAppear:(BOOL)animated {
+-(void)viewDidAppear:(BOOL)animated
+{
 
     
     
@@ -83,6 +87,7 @@
     self.contactPhoneTextView.tintColor = [UIColor blackColor];
     
 }
+
 -(void)refreshNewPostTab { 
     [self setTextViewPlaceHolderText];
     self.locationAddress = nil;
@@ -216,6 +221,7 @@
 
 - (IBAction)onLocationButtonTapped:(id)sender {
 }
+
 - (IBAction)onShareOnSocialMediaButtonTapped:(id)sender {  UIAlertController *shareAlert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction *twitter = [UIAlertAction actionWithTitle:@"Twitter" style:UIAlertActionStyleDefault handler:
@@ -287,39 +293,47 @@
 }
 - (IBAction)onPostButtonTapped:(id)sender {
     
-    Post *newPost = [Post object];
+    
+    Animal *animal = [Animal object];
     NSData *data = UIImagePNGRepresentation(self.postImage);
     PFFile *file = [PFFile fileWithName:@"image.png" data:data];
-    newPost.image = file;
-    newPost.createdBy = self.currentUser;
-    newPost.username = self.currentUser.username;
-    newPost.caption = self.descriptionTextView.text;
-    newPost.phoneNumber = self.contactPhoneTextView.text;
-    newPost.numberOfComments = @0;
-    newPost.location = self.locationSelectedByUser;
+    animal.image = file;
+    animal.createdBy = self.currentUser;
+    animal.username = self.currentUser.username;
+    animal.caption = self.descriptionTextView.text;
+    animal.phoneNumber = self.contactPhoneTextView.text;
+    animal.numberOfComments = @0;
+    animal.location = self.locationSelectedByUser;
+    
+    if (self.locationAddress != nil)
+    {
+      animal.locationAddress = self.locationAddress;
+    }
+    
+    
+    
+//    newPost.createdBy = self.currentUser;
+//    newPost.username = self.currentUser.username;
+//    newPost.caption = self.descriptionTextView.text;
+//    newPost.phoneNumber = self.contactPhoneTextView.text;
+//    newPost.numberOfComments = @0;
+//    newPost.location = self.locationSelectedByUser;
     
     if (self.statusSegmentedControl.selectedSegmentIndex == 0) {
         
-        newPost.petStatus = @"Found";
-        
+        animal.petStatus = @"Found";
+    
     } else if (self.statusSegmentedControl.selectedSegmentIndex == 1) {
         
-        newPost.petStatus = @"Spotted";
+        animal.petStatus = @"Spotted";
         
     } else {
         
-        newPost.petStatus = @"Missing";
+        animal.petStatus = @"Missing";
         
     }
     
-    [newPost saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        
-        if (succeeded) {
-            NSLog(@"yes");
-        }
-    }];
-    
-    
+    [animal generateNewPost];
     [self refreshNewPostTab];
     [self.tabBarController setSelectedIndex:0];
     

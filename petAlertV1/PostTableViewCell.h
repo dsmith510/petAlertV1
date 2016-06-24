@@ -16,6 +16,8 @@
 @class User;
 @class Post;
 @class PostTableViewCell;
+@class Animals;
+@class Animal;
 
 // Delegate
 @protocol PostTableViewCellDelegate <NSObject>
@@ -34,10 +36,10 @@
 // Properties
 @property (nonatomic, assign) id <PostTableViewCellDelegate> delegate;
 @property (nonatomic) User *currentUser;
-@property (nonatomic) Post *post;
+@property (nonatomic) Animal *animalPost;
 
 // Outlets
-@property (weak, nonatomic) IBOutlet PFImageView *postImageView;
+@property (weak, nonatomic) IBOutlet PFImageView *animalImageView;
 @property (weak, nonatomic) IBOutlet UIButton *contactButton;
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;

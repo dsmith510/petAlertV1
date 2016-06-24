@@ -11,8 +11,10 @@
 #import <ParseUI/ParseUI.h>
 #import "User.h"
 #import "Post.h"
+#import "Animal.h"
+#import "Animals.h"
 #import "Comment.h"
-#import "PostHeaderTableViewCell.h"
+#import "PostHeaderTableViewCell.h"  
 #import "PostTableViewCell.h"
 #import <MessageUI/MessageUI.h>
 
@@ -27,6 +29,7 @@
 @property (nonatomic) UIRefreshControl *refreshControl;
 @property (nonatomic) MFMailComposeViewController *mc;
 @property (nonatomic, strong) PFGeoPoint *usersLocation;
+@property Animals *animals;
 
 @end
 
@@ -44,28 +47,32 @@
     self.navigationController.navigationBar.topItem.title = @"Home";
     
 
-// Initialize Current User
+//// Initialize Current User
     self.currentUser = [User currentUser];
     
 // Instantiate array
     self.posts = [NSMutableArray new];
     self.usersLocation = [PFGeoPoint new];
 
+    self.animals = [Animals new];
 
 // Find user's current location
+
     [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint * _Nullable geoPoint, NSError * _Nullable error) {
         if (!error) {
             NSLog(@"User is currently at %f, %f", geoPoint.latitude, geoPoint.longitude);
             self.usersLocation = geoPoint;
-//            [self loadView];
-            [self queryForPostsNearUser];
-        }
+           [self loadView];
+           [self.animals queryForAnimalPostsNearUser:geoPoint WithCompletion:^(NSMutableArray *array) {
+               [self.tableView reloadData];
+           }];
+        }   
         else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
     
-    
+
     
 }
 
@@ -82,32 +89,31 @@
     [self.refreshControl beginRefreshing];
 }
 
--(void) queryForPostsNearUser {
-    if (!self.usersLocation) {
-        NSLog(@"error");
-        return;
-    }
-    PFGeoPoint *userGeopoint = self.usersLocation;
-    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query whereKey:@"location" nearGeoPoint:userGeopoint withinMiles:100];
-    [query orderByDescending:@"createdAt"];
-    query.limit = 20;
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        for (Post *post in objects) {
-            [self.posts addObject:post];
-        }
-        [self.tableView reloadData];
-    }];
-    
-    return;
-}
+//-(void) queryForPostsNearUser {
+//    if (!self.usersLocation) {
+//        NSLog(@"error");
+//        return;
+//    }
+//    PFGeoPoint *userGeopoint = self.usersLocation;
+//    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+//    [query whereKey:@"location" nearGeoPoint:userGeopoint withinMiles:100];
+//    [query orderByDescending:@"createdAt"];
+//    query.limit = 20;
+//    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+//        for (Post *post in objects) {
+//            [self.posts addObject:post];
+//        }
+//        [self.tableView reloadData];
+//    }];
+//    
+//    return;
+//}
 
 #pragma mark - PostTableview Delegate methods
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    return self.posts.count;
-    
+    return self.animals.animalArray.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -121,18 +127,20 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
-    Post *post = self.posts[indexPath.section];
+    self.posts = self.animals.animalArray;
+    Animal *animal= self.posts[indexPath.section];
     cell.delegate = self;
     
-    cell.post = post;
-    [post.image getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
-        cell.postImageView.image = [UIImage imageWithData:data];
+    cell.animalPost = animal;
+    [animal.image getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
+        cell.animalImageView.image = [UIImage imageWithData:data];
     }];
     
 //    [cell.postImageView loadInBackground];
-    cell.numberOfCommentsLabel.text = [NSString stringWithFormat:@"%@",[post.numberOfComments stringValue]];
-    cell.captionTextView.text = post.caption;
-    
+    cell.numberOfCommentsLabel.text = [NSString stringWithFormat:@"%@",[animal.numberOfComments stringValue]];
+    cell.captionTextView.text = animal.caption;
+    cell.locationLabel.text = animal.locationAddress;
+   
     return cell;
     
 }
@@ -145,11 +153,15 @@
     [dateFormater setDateFormat:@"MM/dd/yyyy, h:mm a"];
     NSString *formattedString = [dateFormater stringFromDate:post.createdAt];
     postHeaderCell.dateLabel.text = [NSString stringWithFormat:@ "%@", formattedString];
+     
     
     return postHeaderCell;
 }
 
-    
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+   
+    return 50.0;
+}
 
 
 @end

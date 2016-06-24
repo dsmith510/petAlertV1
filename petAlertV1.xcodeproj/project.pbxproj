@@ -52,6 +52,8 @@
 		CD2930201C5D27AC00DC1DE9 /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD29301F1C5D27AC00DC1DE9 /* LocationViewController.m */; };
 		CD7EF9471CAB453700BECB03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD7EF9451CAB453700BECB03 /* Main.storyboard */; };
 		CDC25ED91CB47F990086110F /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC25ED81CB47F990086110F /* TabBarController.m */; };
+		CDF0618D1D01106F005570A6 /* Animals.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF0618C1D01106F005570A6 /* Animals.m */; };
+		CDF061901D011093005570A6 /* Animal.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF0618F1D011093005570A6 /* Animal.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +131,10 @@
 		CD7EF9461CAB453700BECB03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CDC25ED71CB47F990086110F /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		CDC25ED81CB47F990086110F /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
+		CDF0618B1D01106F005570A6 /* Animals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animals.h; sourceTree = "<group>"; };
+		CDF0618C1D01106F005570A6 /* Animals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animals.m; sourceTree = "<group>"; };
+		CDF0618E1D011093005570A6 /* Animal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animal.h; sourceTree = "<group>"; };
+		CDF0618F1D011093005570A6 /* Animal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animal.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,14 +262,18 @@
 				CD292FC91C5BB72500DC1DE9 /* PostHeaderTableViewCell.m */,
 				CD292FCB1C5BB73500DC1DE9 /* PostTableViewCell.h */,
 				CD292FCC1C5BB73500DC1DE9 /* PostTableViewCell.m */,
+				CDC25ED71CB47F990086110F /* TabBarController.h */,
+				CDC25ED81CB47F990086110F /* TabBarController.m */,
 				CD2930151C5BC98B00DC1DE9 /* User.h */,
 				CD2930161C5BC98B00DC1DE9 /* User.m */,
 				CD2930181C5BC9AB00DC1DE9 /* Post.h */,
 				CD2930191C5BC9AB00DC1DE9 /* Post.m */,
 				CD29301B1C5BC9C500DC1DE9 /* Comment.h */,
 				CD29301C1C5BC9C500DC1DE9 /* Comment.m */,
-				CDC25ED71CB47F990086110F /* TabBarController.h */,
-				CDC25ED81CB47F990086110F /* TabBarController.m */,
+				CDF0618E1D011093005570A6 /* Animal.h */,
+				CDF0618F1D011093005570A6 /* Animal.m */,
+				CDF0618B1D01106F005570A6 /* Animals.h */,
+				CDF0618C1D01106F005570A6 /* Animals.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -449,7 +459,9 @@
 				CD292FA21C5BB5FE00DC1DE9 /* AppDelegate.m in Sources */,
 				CD292FD61C5BB79B00DC1DE9 /* LoginViewController.m in Sources */,
 				CD292FDC1C5BB7CD00DC1DE9 /* NewPostViewController.m in Sources */,
+				CDF061901D011093005570A6 /* Animal.m in Sources */,
 				CD292F9F1C5BB5FE00DC1DE9 /* main.m in Sources */,
+				CDF0618D1D01106F005570A6 /* Animals.m in Sources */,
 				CD292FD91C5BB7B700DC1DE9 /* RegistrationViewController.m in Sources */,
 				CD292FD01C5BB75500DC1DE9 /* HomeViewController.m in Sources */,
 				CD2930201C5D27AC00DC1DE9 /* LocationViewController.m in Sources */,
