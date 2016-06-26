@@ -58,6 +58,7 @@
         [self.window makeKeyAndVisible];
     }
 
+    [PFImageView class];
     return YES;
 }
 

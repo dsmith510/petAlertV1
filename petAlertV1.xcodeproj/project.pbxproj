@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD04C1F01D1E14980020B66A /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD04C1EF1D1E14980020B66A /* CommentViewController.m */; };
+		CD04C1F31D1EE0D80020B66A /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD04C1F21D1EE0D80020B66A /* CommentTableViewCell.m */; };
+		CD04C1F61D20300E0020B66A /* SearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD04C1F51D20300E0020B66A /* SearchTableViewCell.m */; };
 		CD292F9F1C5BB5FE00DC1DE9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CD292F9E1C5BB5FE00DC1DE9 /* main.m */; };
 		CD292FA21C5BB5FE00DC1DE9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CD292FA11C5BB5FE00DC1DE9 /* AppDelegate.m */; };
 		CD292FA51C5BB5FE00DC1DE9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD292FA41C5BB5FE00DC1DE9 /* ViewController.m */; };
@@ -67,6 +70,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CD04C1EE1D1E14980020B66A /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
+		CD04C1EF1D1E14980020B66A /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
+		CD04C1F11D1EE0D80020B66A /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
+		CD04C1F21D1EE0D80020B66A /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
+		CD04C1F41D20300E0020B66A /* SearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewCell.h; sourceTree = "<group>"; };
+		CD04C1F51D20300E0020B66A /* SearchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewCell.m; sourceTree = "<group>"; };
 		CD292F9A1C5BB5FE00DC1DE9 /* petAlertV1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = petAlertV1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD292F9E1C5BB5FE00DC1DE9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CD292FA01C5BB5FE00DC1DE9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -262,6 +271,8 @@
 				CD292FC91C5BB72500DC1DE9 /* PostHeaderTableViewCell.m */,
 				CD292FCB1C5BB73500DC1DE9 /* PostTableViewCell.h */,
 				CD292FCC1C5BB73500DC1DE9 /* PostTableViewCell.m */,
+				CD04C1F11D1EE0D80020B66A /* CommentTableViewCell.h */,
+				CD04C1F21D1EE0D80020B66A /* CommentTableViewCell.m */,
 				CDC25ED71CB47F990086110F /* TabBarController.h */,
 				CDC25ED81CB47F990086110F /* TabBarController.m */,
 				CD2930151C5BC98B00DC1DE9 /* User.h */,
@@ -296,6 +307,8 @@
 			children = (
 				CD292FCE1C5BB75500DC1DE9 /* HomeViewController.h */,
 				CD292FCF1C5BB75500DC1DE9 /* HomeViewController.m */,
+				CD04C1EE1D1E14980020B66A /* CommentViewController.h */,
+				CD04C1EF1D1E14980020B66A /* CommentViewController.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -314,6 +327,8 @@
 			children = (
 				CD292FDD1C5BB7DE00DC1DE9 /* SearchViewController.h */,
 				CD292FDE1C5BB7DE00DC1DE9 /* SearchViewController.m */,
+				CD04C1F41D20300E0020B66A /* SearchTableViewCell.h */,
+				CD04C1F51D20300E0020B66A /* SearchTableViewCell.m */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -455,11 +470,14 @@
 				CD292FA51C5BB5FE00DC1DE9 /* ViewController.m in Sources */,
 				CD292FD31C5BB78500DC1DE9 /* SplashLoginViewController.m in Sources */,
 				CD292FCD1C5BB73500DC1DE9 /* PostTableViewCell.m in Sources */,
+				CD04C1F01D1E14980020B66A /* CommentViewController.m in Sources */,
+				CD04C1F61D20300E0020B66A /* SearchTableViewCell.m in Sources */,
 				CD292FCA1C5BB72500DC1DE9 /* PostHeaderTableViewCell.m in Sources */,
 				CD292FA21C5BB5FE00DC1DE9 /* AppDelegate.m in Sources */,
 				CD292FD61C5BB79B00DC1DE9 /* LoginViewController.m in Sources */,
 				CD292FDC1C5BB7CD00DC1DE9 /* NewPostViewController.m in Sources */,
 				CDF061901D011093005570A6 /* Animal.m in Sources */,
+				CD04C1F31D1EE0D80020B66A /* CommentTableViewCell.m in Sources */,
 				CD292F9F1C5BB5FE00DC1DE9 /* main.m in Sources */,
 				CDF0618D1D01106F005570A6 /* Animals.m in Sources */,
 				CD292FD91C5BB7B700DC1DE9 /* RegistrationViewController.m in Sources */,

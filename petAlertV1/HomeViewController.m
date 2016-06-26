@@ -16,6 +16,7 @@
 #import "Comment.h"
 #import "PostHeaderTableViewCell.h"  
 #import "PostTableViewCell.h"
+#import "CommentViewController.h"
 #import <MessageUI/MessageUI.h>
 
 @interface HomeViewController ()<UITableViewDataSource, UITableViewDelegate, PostTableViewCellDelegate, MFMailComposeViewControllerDelegate>
@@ -30,6 +31,7 @@
 @property (nonatomic) MFMailComposeViewController *mc;
 @property (nonatomic, strong) PFGeoPoint *usersLocation;
 @property Animals *animals;
+@property Animals *animalPost;
 
 @end
 
@@ -89,26 +91,6 @@
     [self.refreshControl beginRefreshing];
 }
 
-//-(void) queryForPostsNearUser {
-//    if (!self.usersLocation) {
-//        NSLog(@"error");
-//        return;
-//    }
-//    PFGeoPoint *userGeopoint = self.usersLocation;
-//    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-//    [query whereKey:@"location" nearGeoPoint:userGeopoint withinMiles:100];
-//    [query orderByDescending:@"createdAt"];
-//    query.limit = 20;
-//    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-//        for (Post *post in objects) {
-//            [self.posts addObject:post];
-//        }
-//        [self.tableView reloadData];
-//    }];
-//    
-//    return;
-//}
-
 #pragma mark - PostTableview Delegate methods
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -132,6 +114,7 @@
     cell.delegate = self;
     
     cell.animalPost = animal;
+
     [animal.image getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
         cell.animalImageView.image = [UIImage imageWithData:data];
     }];
@@ -143,6 +126,12 @@
    
     return cell;
     
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PostTableViewCell *postCell = (PostTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+    [self performSegueWithIdentifier:@"CommentSegue" sender:postCell];
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -163,5 +152,18 @@
     return 50.0;
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+// Pass corresponding animal post to CommentViewController
+    if ([segue.identifier isEqualToString:@"CommentSegue"])
+    {
+        NSIndexPath *indexPath = (NSIndexPath *)sender;
+        CommentViewController *vc = segue.destinationViewController;
+        vc.animal =[self.animals.animalArray objectAtIndex:indexPath.row];
+        
+
+    }
+}
 
 @end

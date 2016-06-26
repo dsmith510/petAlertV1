@@ -11,6 +11,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 #import <Parse/Parse.h>
+#import "SearchTableViewCell.h"
 
 
 
@@ -21,7 +22,7 @@
 
 @property UISearchController *searchController;
 @property UISearchBar *searchBar;
-@property UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSMutableArray *animalPostArray;
 @property NSString *one;
 @property NSString *two;
@@ -40,7 +41,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    Animals *animals = [Animals new];
+    self.animals = [Animals new];
+    self.animalPostArray = [NSMutableArray new];
+    self.tableView.delegate = self;
 //    self.searchController = [[UISearchController alloc] initWithSearchResultsController:self];
 //    self.searchController.searchResultsUpdater = self;
 //    self.searchController.dimsBackgroundDuringPresentation = false;
@@ -92,13 +95,14 @@
         }
         else
         {
-            if (placemarks && placemarks.count > 0)
+            if (placemarks.count > 0)
             {
                 CLPlacemark *placemark = placemarks[0];
                 CLLocation *petSearchLocation = placemark.location;
                 PFGeoPoint *geoPoint = [PFGeoPoint geoPointWithLatitude:petSearchLocation.coordinate.latitude longitude:petSearchLocation.coordinate.longitude];
                 [self.animals queryForAnimalPostsNearUser:geoPoint WithCompletion:^(NSMutableArray *array)
                 {
+                    NSLog(@"Animals Array: %@", self.animals.animalArray);
                     [self.tableView reloadData];
                 }];
             }
@@ -129,14 +133,31 @@
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellID"];
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellID"];
+//    Animal *animal = self.animals.animalArray[indexPath.row];
+//    cell.textLabel.text = animal.caption;
+//    [animal.image getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error)
+//    {
+//        cell.imageView.image = [UIImage imageWithData:data];
+//    }];
+//
+//    
+//
+    SearchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellID"];
     Animal *animal = self.animals.animalArray[indexPath.row];
-    cell.textLabel.text = animal.caption;
-    [animal.image getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error)
-    {
-        cell.imageView.image = [UIImage imageWithData:data];
-    }];
+    
+    cell.animalImageView.file = animal.image;
+    [cell.animalImageView loadInBackground];
+cell.animalDescriptionTextView.text = animal.caption;
 
+    NSDateFormatter *dateFormater = [NSDateFormatter new];
+    [dateFormater setDateFormat:@"MM/dd/yyyy, h:mm a"];
+    NSString *formattedString = [dateFormater stringFromDate:animal.createdAt];
+   cell.dateLabel.text = [NSString stringWithFormat:@ "%@", formattedString];
+    
+    NSString *animalStatus = animal.petStatus;
+    NSString *userString = [animalStatus stringByAppendingString:@" on "];
+    cell.animalStatusLabel.text = userString;
     
     return cell;
 }

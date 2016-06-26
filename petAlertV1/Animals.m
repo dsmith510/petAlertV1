@@ -7,32 +7,11 @@
 //
 
 #import "Animals.h"
+#import "Comment.h"
 #import "HomeViewController.h"
 
 @implementation Animals
 
-//-(void)getUsersLocationWithCompletion:(void (^)(NSMutableArray *))complete
-//{
-//    self.currentUser = [User currentUser];
-//    // Find user's current location
-//    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint * _Nullable geoPoint, NSError * _Nullable error) {
-//        if (!error) {
-//            NSLog(@"User is currently at %f, %f", geoPoint.latitude, geoPoint.longitude);
-//            self.usersLocation = geoPoint;
-//            //            [self loadView];
-//            [self queryForAnimalPostsNearUserWithCompletion:^(NSMutableArray *animalPostsArray){
-//                self.animalsArray = animalPostsArray;
-//            }];
-//        }
-//        else {
-//            NSLog(@"%@", error.localizedDescription);
-//        }
-//        
-//        complete(_animalsArray);
-//    }];
-//  
-//
-//}
 -(void)queryForAnimalPostsNearUser:(PFGeoPoint *)usersLocation WithCompletion:(void (^)(NSMutableArray *))complete
 {    
     if (!usersLocation)
@@ -60,10 +39,72 @@
             {
                 [self.animalArray addObject:animal];
             }
-            complete(_animalArray);
+            complete(self.animalArray);
         }
     }];
     
     return;
+}
+
+-(void)getCommentsforAnimal:(Animal *)animalPost WithCompletion:(void (^)(NSMutableArray *))complete
+{
+    
+    PFRelation *relation = [animalPost relationForKey:@"commentsRelation"];
+    PFQuery *query = [relation query];
+    [query orderByAscending:@"createdAt"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (error)
+        {
+            NSLog(@"Comment Error: %@", error.localizedDescription);
+        }
+        
+        else
+        {
+            for (Comment *comment in objects)
+            {
+                [self.commentArray addObject:comment];
+            }
+            complete(self.commentArray);
+        }
+    }];
+    
+}
+
+-(void)deleteComment: (Comment *)comment fromAnimalPost: (Animal *)animalPost atIndexPath:(NSIndexPath *)indexPath inArray:(NSMutableArray *)commentsArray WithCompletion:(void (^)())complete
+{
+    PFRelation *relation = [animalPost relationForKey:@"commentsRelation"];
+    [relation removeObject:comment];
+    [animalPost saveInBackground];
+    
+    [commentsArray removeObjectAtIndex:indexPath.row];
+    complete();
+}
+
+-(void)addComment:(Comment *)newComment fromTextField: (UITextField *)commentTextField byUser :(User *)currentUser toAnimalPost:(Animal *)animalPost inArray:(NSMutableArray *)commentsArray withCompletion:(void (^)())complete
+{
+    newComment.user = self.currentUser;
+    newComment.text = commentTextField.text;
+    [newComment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error)
+    {
+        [commentsArray addObject:newComment];
+        if (succeeded)
+        {
+            NSLog(@"comment saved");
+        }
+        
+        animalPost.numberOfComments = @(animalPost.numberOfComments.integerValue +1);
+        PFRelation *relation = [animalPost relationForKey:@"commentsRelation"];
+        [relation addObject:newComment];
+        [animalPost saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error)
+        {
+            if (succeeded)
+            {
+                NSLog(@"animal post saved");
+            }
+        }];
+        
+        complete();
+    }];
+    
 }
 @end

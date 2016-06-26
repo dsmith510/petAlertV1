@@ -18,9 +18,14 @@
 @interface Animals : NSObject
 
 @property NSMutableArray *animalArray;
+@property NSMutableArray *commentArray;
 @property PFGeoPoint *usersLocation;
 @property User *currentUser;
 
--(void) getUsersLocationWithCompletion:(void(^)(NSMutableArray *))complete;
+-(void) getCommentsforAnimal: (Animal *)animalPost WithCompletion:(void(^)(NSMutableArray *))complete;
 -(void)queryForAnimalPostsNearUser:(PFGeoPoint *)usersLocation WithCompletion:(void (^)(NSMutableArray *))complete;
+
+-(void)deleteComment: (Comment *)comment fromAnimalPost: (Animal *)animalPost atIndexPath:(NSIndexPath *)indexPath inArray:(NSMutableArray *)commentsArray WithCompletion:(void (^)())complete;
+
+-(void)addComment:(Comment *)newComment fromTextField: (UITextField *)commentTextField byUser :(User *)currentUser toAnimalPost:(Animal *)animalPost inArray:(NSMutableArray *)commentsArray withCompletion:(void (^)())complete;
 @end
