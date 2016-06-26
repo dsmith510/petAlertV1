@@ -12,7 +12,7 @@
 
 @implementation User
 
-@dynamic fullName;
+@dynamic username;
 @dynamic postsRelation;
 @dynamic locationRelation;
 

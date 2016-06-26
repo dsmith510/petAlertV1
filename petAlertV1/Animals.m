@@ -82,7 +82,7 @@
 
 -(void)addComment:(Comment *)newComment fromTextField: (UITextField *)commentTextField byUser :(User *)currentUser toAnimalPost:(Animal *)animalPost inArray:(NSMutableArray *)commentsArray withCompletion:(void (^)())complete
 {
-    newComment.user = self.currentUser;
+    newComment.user = currentUser;
     newComment.text = commentTextField.text;
     [newComment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error)
     {

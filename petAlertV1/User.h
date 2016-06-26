@@ -12,7 +12,7 @@
 
 @interface User : PFUser <PFSubclassing>
 
-@property (nonatomic) NSString *fullName;
+@property (nonatomic) NSString *username;
 @property (nonatomic) PFRelation *postsRelation;
 @property (nonatomic) PFRelation *locationRelation;
 

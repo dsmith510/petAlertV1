@@ -59,7 +59,7 @@
     CommentTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
     Comment *comment = self.comments[indexPath.row];
     NSLog(@"comment: %@", comment);
-//    commentCell.usernameLabel.text = comment.user.fullName;
+    commentCell.usernameLabel.text = comment.user.username;
     commentCell.commentTextView.text = comment.text;
     commentCell.timeStampLabel.text = [self formatCommentTimeStamp:comment];
     return commentCell;
