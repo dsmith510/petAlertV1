@@ -34,6 +34,7 @@
 @property CLLocation *petSearchLocation;
 @property CLLocationCoordinate2D coordinate;
 @property Animals *animals;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -41,9 +42,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+// Instantiation
     self.animals = [Animals new];
     self.animalPostArray = [NSMutableArray new];
+    
+// Set delegate
     self.tableView.delegate = self;
+    
+    
 //    self.searchController = [[UISearchController alloc] initWithSearchResultsController:self];
 //    self.searchController.searchResultsUpdater = self;
 //    self.searchController.dimsBackgroundDuringPresentation = false;
@@ -51,18 +58,7 @@
 //    self.searchController.searchBar.delegate = self;
 //    self.navigationItem.titleView = self.searchController.searchBar;
 //    
-//    self.lat = [self.latTextField.text doubleValue];
-//    self.longitude = [self.longTextfield.text doubleValue];
-//    self.petSearchLocation = [[CLLocation alloc] initWithLatitude:_lat longitude:_longitude];
-//    self.coordinate = CLLocationCoordinate2DMake(_lat, _longitude);
-//    PFGeoPoint *geoPoint = [PFGeoPoint geoPointWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];
-//   [animals queryForAnimalPostsNearUser:geoPoint WithCompletion:^(NSMutableArray *animalPosts) {
-//       [self.tableView reloadData];
-//   }];
-    
-    
-    
-//    
+   
 //    self.one = @"Friendly female Brown dog with blue eyes";
 //    self.two = @"Timid White cat with green eyes";
 //    self.three = @"Sweet yellow cat with white stomach";
@@ -82,9 +78,13 @@
 }
 
 
+
 - (IBAction)onSearchButtonTapped:(id)sender
 {
-    
+    [self.activityIndicator startAnimating];
+    self.animals.animalArray = nil;
+    [self.tableView reloadData];
+
     CLGeocoder *geocoder = [[CLGeocoder alloc]init];
     NSString *location = self.locationTextField.text;
     [geocoder geocodeAddressString:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error)
@@ -118,8 +118,10 @@
 //    [animals queryForAnimalPostsNearUser:geoPoint WithCompletion:^(NSMutableArray *animalPosts) {
 //        [self.tableView reloadData];
 //    }];
-
     
+    [self.activityIndicator stopAnimating];
+    [self.activityIndicator hidesWhenStopped];
+    [self.locationTextField resignFirstResponder];
     NSLog(@"button pressed");
 }
 

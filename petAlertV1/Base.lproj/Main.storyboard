@@ -176,36 +176,51 @@
                                     <outlet property="delegate" destination="W8j-4j-WkC" id="wVt-hr-Uv7"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="8LH-1E-rBN">
+                                <rect key="frame" x="-10" y="-10" width="20" height="20"/>
+                                <color key="color" red="0.64124131240000004" green="0.96332965680000004" blue="0.8658834071" alpha="1" colorSpace="calibratedRGB"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="290" width="400" height="20"/>
+                                </variation>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="GE4-6P-jFr" firstAttribute="centerX" secondItem="Ii8-N6-Ygb" secondAttribute="centerX" id="C01-EX-v0y"/>
                             <constraint firstItem="GE4-6P-jFr" firstAttribute="top" secondItem="Ii8-N6-Ygb" secondAttribute="top" id="KKZ-CZ-pGp"/>
                             <constraint firstItem="GE4-6P-jFr" firstAttribute="leading" secondItem="Ii8-N6-Ygb" secondAttribute="leading" id="SCX-Db-ewm"/>
                             <constraint firstAttribute="trailing" secondItem="GE4-6P-jFr" secondAttribute="trailing" id="Xhv-Vr-u1c"/>
                             <constraint firstAttribute="bottom" secondItem="GE4-6P-jFr" secondAttribute="bottom" id="f9x-rX-h9C">
                                 <variation key="widthClass=compact" constant="0.0"/>
                             </constraint>
+                            <constraint firstItem="GE4-6P-jFr" firstAttribute="centerY" secondItem="Ii8-N6-Ygb" secondAttribute="centerY" id="l0D-8R-Kt1"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="GE4-6P-jFr"/>
+                                <exclude reference="8LH-1E-rBN"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="C01-EX-v0y"/>
                                 <exclude reference="KKZ-CZ-pGp"/>
                                 <exclude reference="SCX-Db-ewm"/>
                                 <exclude reference="Xhv-Vr-u1c"/>
                                 <exclude reference="f9x-rX-h9C"/>
+                                <exclude reference="l0D-8R-Kt1"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="GE4-6P-jFr"/>
+                                <include reference="8LH-1E-rBN"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="C01-EX-v0y"/>
                                 <include reference="KKZ-CZ-pGp"/>
                                 <include reference="SCX-Db-ewm"/>
                                 <include reference="Xhv-Vr-u1c"/>
                                 <include reference="f9x-rX-h9C"/>
+                                <include reference="l0D-8R-Kt1"/>
                             </mask>
                         </variation>
                     </view>
@@ -233,6 +248,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="8LH-1E-rBN" id="npn-JS-zNJ"/>
                         <outlet property="locationTextField" destination="iy4-mV-0i1" id="orZ-CN-EhI"/>
                         <outlet property="searchDisplayController" destination="a85-gC-izX" id="ZL2-tO-q7Q"/>
                         <outlet property="tableView" destination="GE4-6P-jFr" id="gcm-jo-g8U"/>
@@ -1448,7 +1464,9 @@
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="Jvy-IQ-8ce"/>
-                                                        <constraint firstAttribute="width" constant="30" id="W30-Ux-jzG"/>
+                                                        <constraint firstAttribute="width" constant="30" id="W30-Ux-jzG">
+                                                            <variation key="widthClass=compact" constant="56"/>
+                                                        </constraint>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1494,6 +1512,7 @@
                                                 <constraint firstItem="5wB-Gg-R6h" firstAttribute="leading" secondItem="91L-zs-egI" secondAttribute="leadingMargin" id="7Hy-sk-S87"/>
                                                 <constraint firstItem="5wB-Gg-R6h" firstAttribute="trailing" secondItem="91L-zs-egI" secondAttribute="trailingMargin" id="M9E-bN-jGQ"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="KAU-ri-Dfy" secondAttribute="trailing" constant="5" id="MKM-Sl-2sc"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="KAU-ri-Dfy" secondAttribute="trailing" constant="5" id="TMe-OF-EtX"/>
                                                 <constraint firstItem="iqR-Gy-MIi" firstAttribute="top" secondItem="91L-zs-egI" secondAttribute="topMargin" id="cuK-jM-dqO"/>
                                                 <constraint firstItem="KAU-ri-Dfy" firstAttribute="top" secondItem="91L-zs-egI" secondAttribute="topMargin" id="jSP-XV-KDu"/>
                                                 <constraint firstItem="iqR-Gy-MIi" firstAttribute="leading" secondItem="91L-zs-egI" secondAttribute="leadingMargin" constant="5" id="q1X-lT-emD"/>
@@ -1511,6 +1530,7 @@
                                                     <exclude reference="7Hy-sk-S87"/>
                                                     <exclude reference="M9E-bN-jGQ"/>
                                                     <exclude reference="MKM-Sl-2sc"/>
+                                                    <exclude reference="TMe-OF-EtX"/>
                                                     <exclude reference="jSP-XV-KDu"/>
                                                 </mask>
                                             </variation>
@@ -1527,6 +1547,7 @@
                                                     <include reference="7Hy-sk-S87"/>
                                                     <include reference="M9E-bN-jGQ"/>
                                                     <include reference="MKM-Sl-2sc"/>
+                                                    <include reference="TMe-OF-EtX"/>
                                                     <include reference="jSP-XV-KDu"/>
                                                 </mask>
                                             </variation>
@@ -1538,6 +1559,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Val-Bx-JXR" id="nXH-yl-DRa"/>
+                                    <outlet property="delegate" destination="Val-Bx-JXR" id="gKa-wQ-KUP"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

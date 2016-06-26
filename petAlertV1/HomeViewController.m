@@ -130,8 +130,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PostTableViewCell *postCell = (PostTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-    [self performSegueWithIdentifier:@"CommentSegue" sender:postCell];
+//    PostTableViewCell *postCell = (PostTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+    [self performSegueWithIdentifier:@"CommentSegue" sender:indexPath];
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -158,11 +158,13 @@
 // Pass corresponding animal post to CommentViewController
     if ([segue.identifier isEqualToString:@"CommentSegue"])
     {
-        NSIndexPath *indexPath = (NSIndexPath *)sender;
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         CommentViewController *vc = segue.destinationViewController;
         vc.animal =[self.animals.animalArray objectAtIndex:indexPath.row];
+        NSLog(@"%@",vc.animal);
         
-
+ 
     }
 }
 

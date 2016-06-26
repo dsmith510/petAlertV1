@@ -48,7 +48,7 @@
 
 -(void)getCommentsforAnimal:(Animal *)animalPost WithCompletion:(void (^)(NSMutableArray *))complete
 {
-    
+    self.commentArray = [NSMutableArray new];
     PFRelation *relation = [animalPost relationForKey:@"commentsRelation"];
     PFQuery *query = [relation query];
     [query orderByAscending:@"createdAt"];

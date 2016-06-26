@@ -37,6 +37,8 @@
     
     self.currentUser = [User currentUser];
     self.animals = [Animals new];
+    self.comments = [NSMutableArray new];
+    self.tableView.delegate = self;
     
     [self.animals getCommentsforAnimal:self.animal WithCompletion:^(NSMutableArray *array)
     {
@@ -56,38 +58,39 @@
 {
     CommentTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
     Comment *comment = self.comments[indexPath.row];
-    commentCell.usernameLabel.text = comment.user.fullName;
+    NSLog(@"comment: %@", comment);
+//    commentCell.usernameLabel.text = comment.user.fullName;
     commentCell.commentTextView.text = comment.text;
     commentCell.timeStampLabel.text = [self formatCommentTimeStamp:comment];
     return commentCell;
 }
 
--(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    Comment *comment = self.comments[indexPath.row];
-    if (comment.user.objectId == self.currentUser.objectId)
-    {
-        return YES;
-    }
-    else
-    {
-        return NO;
-    }
-}
+//-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    Comment *comment = self.comments[indexPath.row];
+//    if (comment.user.objectId == self.currentUser.objectId)
+//    {
+//        return YES;
+//    }
+//    else
+//    {
+//        return NO;
+//    }
+//}
 
--(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    Comment *comment = self.comments[indexPath.row];
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete)
-    {
-        self.animal.numberOfComments = @(self.animal.numberOfComments.integerValue - 1);
-       [self.animals deleteComment:comment fromAnimalPost:self.animal atIndexPath:indexPath inArray: self.comments WithCompletion:^{
-           [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:YES];
-       }];
-        
-    }
-}
+//-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    Comment *comment = self.comments[indexPath.row];
+//    
+//    if (editingStyle == UITableViewCellEditingStyleDelete)
+//    {
+//        self.animal.numberOfComments = @(self.animal.numberOfComments.integerValue - 1);
+//       [self.animals deleteComment:comment fromAnimalPost:self.animal atIndexPath:indexPath inArray: self.comments WithCompletion:^{
+//           [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:YES];
+//       }];
+//        
+//    }
+//}
 
 
 - (IBAction)onAddCommentButtonTapped:(UIBarButtonItem *)sender
@@ -134,12 +137,12 @@
     NSDate *currentDate = [NSDate date];
     NSDate *datePosted = comment.createdAt;
     
-    NSDateComponents *components = [calendar components:NSCalendarUnitMinute fromDate:currentDate toDate:datePosted options:0];
+    NSDateComponents *components = [calendar components:NSCalendarUnitHour fromDate:datePosted toDate:currentDate options:0];
     NSInteger time = components.hour;
     
     if (time < 1)
     {
-        NSDateComponents *components = [calendar components:NSCalendarUnitMinute fromDate:currentDate toDate:datePosted options:0];
+        NSDateComponents *components = [calendar components:NSCalendarUnitMinute fromDate:datePosted toDate:currentDate options:0];
         NSInteger time = components.minute;
         timeStamp = [NSString stringWithFormat:@"%lum", time];
     }
