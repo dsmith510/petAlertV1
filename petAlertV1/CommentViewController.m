@@ -15,8 +15,9 @@
 #import "Comment.h"
 #import "HomeViewController.h"
 #import "Animals.h"
+#import <MessageUI/MessageUI.h>
 
-@interface CommentViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface CommentViewController ()<UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate>
 
 // Properties
 

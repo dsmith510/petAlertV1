@@ -135,16 +135,7 @@
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellID"];
-//    Animal *animal = self.animals.animalArray[indexPath.row];
-//    cell.textLabel.text = animal.caption;
-//    [animal.image getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error)
-//    {
-//        cell.imageView.image = [UIImage imageWithData:data];
-//    }];
-//
-//    
-//
+
     SearchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellID"];
     Animal *animal = self.animals.animalArray[indexPath.row];
     

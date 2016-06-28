@@ -113,7 +113,6 @@
     PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
     self.posts = self.animals.animalArray;
     Animal *animal= self.posts[indexPath.section];
-//    cell.delegate = self;
     
     cell.animalPost = animal;
 
@@ -121,7 +120,6 @@
         cell.animalImageView.image = [UIImage imageWithData:data];
     }];
     
-//    [cell.postImageView loadInBackground];
     cell.numberOfCommentsLabel.text = [NSString stringWithFormat:@"%@",[animal.numberOfComments stringValue]];
     cell.captionTextView.text = animal.caption;
     cell.locationLabel.text = animal.locationAddress;
@@ -173,12 +171,18 @@
     
     UIAlertAction *report = [UIAlertAction actionWithTitle:@"Report this post" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
     {
-        //Add method call
+        [self.animals reportAnimalPostatIndex:self.postCell withCompletion:^(MFMailComposeViewController *mcvc)
+        {
+            [self presentViewController:mcvc animated:YES completion:^
+            {
+                
+            }];
+        }];
     }];
     
     UIAlertAction *deleteAnimalPost = [UIAlertAction actionWithTitle:@"Delete this post" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
     {
-        [self.animals deleteAnimalPostfromArray:self.posts atIndex:cell withCompletion:^{
+        [self.animals deleteAnimalPostfromArray:self.posts atIndex:self.postCell withCompletion:^{
             [self.tableView reloadData];
         }];
     }];
@@ -225,26 +229,6 @@
         vc.animal = self.postCell.animalPost;
 
     }
-//    CommentViewController *vc = segue.destinationViewController;
-////    UIViewController *controller;
-////
-////    if ([vc isKindOfClass:[UINavigationController class]]) {
-////        UINavigationController *navController = (UINavigationController *)vc;
-////        controller = [navController.viewControllers firstObject];
-////    
-////    }
-////    
-////    else
-////    {
-////        controller = vc;
-////    }
-//    
-////    if ([vc isKindOfClass:[CommentViewController class]])
-////    {
-////        <#statements#>
-////    }
-////    
-//    vc.animal = sender.animalPost;
-//    
+  
 }
 @end

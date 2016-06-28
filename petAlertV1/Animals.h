@@ -14,14 +14,16 @@
 #import "Comment.h"
 #import "HomeViewController.h"
 #import "PostTableViewCell.h"
+#import <MessageUI/MessageUI.h>
 
 
-@interface Animals : NSObject
+@interface Animals : NSObject <MFMailComposeViewControllerDelegate>
 
 @property NSMutableArray *animalArray;
 @property NSMutableArray *commentArray;
 @property PFGeoPoint *usersLocation;
 @property User *currentUser;
+@property MFMailComposeViewController *mcvc;
 
 -(void) getCommentsforAnimal: (Animal *)animalPost WithCompletion:(void(^)(NSMutableArray *))complete;
 -(void)queryForAnimalPostsNearUser:(PFGeoPoint *)usersLocation WithCompletion:(void (^)(NSMutableArray *))complete;
@@ -30,5 +32,7 @@
 
 -(void)addComment:(Comment *)newComment fromTextField: (UITextField *)commentTextField byUser :(User *)currentUser toAnimalPost:(Animal *)animalPost inArray:(NSMutableArray *)commentsArray withCompletion:(void (^)())complete;
 
--(void)deleteAnimalPostfromArray: (NSMutableArray *)animalPostArray atIndex:(PostTableViewCell *)selectedIndexPath withCompletion:(void (^) ())complete;
+-(void)deleteAnimalPostfromArray: (NSMutableArray *)animalPostArray atIndex:(PostTableViewCell *)cell withCompletion:(void (^) ())complete;
+
+-(void)reportAnimalPostatIndex:(PostTableViewCell *)cell withCompletion:(void (^)(MFMailComposeViewController *mcvc))complete;
 @end
