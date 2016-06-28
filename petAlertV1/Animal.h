@@ -26,6 +26,7 @@
 @property (nonatomic) NSString *phoneNumber;
 @property (nonatomic) NSString *petStatus;
 @property (nonatomic) NSDate *createdAt;
+@property NSArray *email;
 
 + (NSString *)parseClassName;
 -(void)generateNewPost;

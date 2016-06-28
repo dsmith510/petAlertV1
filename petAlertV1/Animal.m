@@ -25,6 +25,7 @@
 @dynamic phoneNumber;
 @dynamic petStatus;
 @dynamic createdAt;
+@dynamic email;
 
 + (void)load {
     [self registerSubclass];

@@ -111,6 +111,8 @@
 
 -(void)deleteAnimalPostfromArray:(NSMutableArray *)animalPostArray atIndex:(PostTableViewCell *)cell withCompletion:(void (^)())complete
 {
+    
+# warning - Why is there an error? It worked elsewhere...
     [animalPostArray removeObjectAtIndex:cell.animalPost];
     [cell.animalPost deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (error)
@@ -128,8 +130,9 @@
 
 -(void)reportAnimalPostatIndex:(PostTableViewCell *)cell withCompletion:(void (^)(MFMailComposeViewController *))complete
 {
-    NSString *emailTitle = @"Inappropriate Post";
+    NSString *emailTitle = @"Report Inappropriate Post";
     NSString *messageBody = [NSString stringWithFormat:@"Post ID: %@",cell.animalPost.objectId];
+    
     NSArray *Recipient = [NSArray arrayWithObject:@"d.smith510@yahoo.com"];
     self.mcvc = [[MFMailComposeViewController alloc] init];
     self.mcvc.mailComposeDelegate = self;

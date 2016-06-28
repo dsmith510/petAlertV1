@@ -128,11 +128,7 @@
     
 }
 
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-////    PostTableViewCell *postCell = (PostTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-//    [self performSegueWithIdentifier:@"CommentSegue" sender:indexPath];
-//}
+
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     PostHeaderTableViewCell *postHeaderCell = [tableView dequeueReusableCellWithIdentifier:@"PostHeaderCell"];
@@ -151,7 +147,7 @@
    
     return 50.0;
 }
-//
+
 
 #pragma mark - PostTableViewCell Delegate Methods
 
@@ -171,7 +167,7 @@
     
     UIAlertAction *report = [UIAlertAction actionWithTitle:@"Report this post" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
     {
-        [self.animals reportAnimalPostatIndex:self.postCell withCompletion:^(MFMailComposeViewController *mcvc)
+        [self.animals reportAnimalPostatIndex:cell withCompletion:^(MFMailComposeViewController *mcvc)
         {
             [self presentViewController:mcvc animated:YES completion:^
             {
@@ -182,7 +178,9 @@
     
     UIAlertAction *deleteAnimalPost = [UIAlertAction actionWithTitle:@"Delete this post" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
     {
-        [self.animals deleteAnimalPostfromArray:self.posts atIndex:self.postCell withCompletion:^{
+        
+#warning  - MUST FIX
+        [self.animals deleteAnimalPostfromArray:self.posts atIndex:cell withCompletion:^{
             [self.tableView reloadData];
         }];
     }];
@@ -205,9 +203,96 @@
 
 -(void)didTapContactButton:(UIButton *)sender onCell:(PostTableViewCell *)cell
 {
-      NSLog(@"Contact Button Pressed");
-}
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Contact" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *call = [UIAlertAction actionWithTitle:@"Call" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
+    {
+        NSString *telephoneUrl =[@"tel://" stringByAppendingString:cell.animalPost.phoneNumber];
+        NSLog(@"%@", cell.animalPost.phoneNumber);
+        
+        if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:telephoneUrl]])
+        {
+            
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:telephoneUrl]];
+            
+        }
+        else
+        {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Unable to contact poster." preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *okay = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
+            {
+               
+            }];
+            [alert addAction:okay];
+            [self presentViewController:alert animated:YES completion:nil];
+        
+        }
+        
+        
+    }];
+    
+    UIAlertAction *text = [UIAlertAction actionWithTitle:@"Text" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        NSString *telephoneUrl =[@"sms://" stringByAppendingString:cell.animalPost.phoneNumber];
+        NSLog(@"%@", cell.animalPost.phoneNumber);
+        
+        if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:telephoneUrl]])
+        {
+            
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:telephoneUrl]];
+            
+        }
+        else
+        {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Unable to contact poster." preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *okay = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
+                                   {
+                                       
+                                   }];
+            [alert addAction:okay];
+            [self presentViewController:alert animated:YES completion:nil];
+            
+        }
 
+        
+    }];
+    
+    UIAlertAction *email = [UIAlertAction actionWithTitle:@"Email" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
+    {
+       // Code to email listed address
+    }];
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action)
+    {
+        
+    }];
+    
+    if (cell.animalPost.phoneNumber && cell.animalPost.email)
+    {
+        [alert addAction:call];
+        [alert addAction:text];
+        [alert addAction:email];
+    }
+    else if (cell.animalPost.phoneNumber && !cell.animalPost.email)
+    {
+        [alert addAction:call];
+        [alert addAction:text];
+    }
+    else if (!cell.animalPost.phoneNumber && cell.animalPost.email)
+    {
+        [alert addAction:email];
+    }
+    
+    [alert addAction:cancel];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+      NSLog(@"Contact Button Pressed");
+    
+}
+                          
 -(void)didTapShareButton:(UIButton *)sender onCell:(PostTableViewCell *)cell
 {
     NSLog(@"Share Button Pressed");
