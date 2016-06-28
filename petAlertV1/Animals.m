@@ -106,5 +106,24 @@
         complete();
     }];
     
+
 }
+
+-(void)deleteAnimalPostfromArray:(NSMutableArray *)animalPostArray atIndex:(PostTableViewCell *)selectedIndexPath withCompletion:(void (^)())complete
+{
+    [animalPostArray removeObjectAtIndex:selectedIndexPath.animalPost];
+    [selectedIndexPath.animalPost deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if (error)
+        {
+            NSLog(@"Delete Post Error: %@", error.localizedDescription);
+        }
+        else
+        {
+            complete();
+        }
+    }];
+    
+}
+
+
 @end

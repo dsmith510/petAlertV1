@@ -23,35 +23,75 @@
 
     // Configure the view for the selected state
 }
-- (IBAction)onCallButtonTapped:(id)sender {
-}
-- (IBAction)onCommentButtonTapped:(id)sender {
-    
+
+
+
+
+- (IBAction)onCommentButtonTapped:(UIButton *)sender {
     [self.delegate didTapCommentButton:sender onCell:self];
-    [UIView animateWithDuration:0.1f animations:^{
-        CGAffineTransformMakeScale(1.2, 1.2);
-    } completion:^(BOOL finished) {
-      [UIView animateWithDuration:0.1f animations:^{
-          self.commentButton.transform = CGAffineTransformMakeScale(1.0, 1.0);
-      }];
-    }];
+    
+        [UIView animateWithDuration:0.1f animations:^{
+            CGAffineTransformMakeScale(1.2, 1.2);
+        } completion:^(BOOL finished) {
+          [UIView animateWithDuration:0.1f animations:^{
+              self.commentButton.transform = CGAffineTransformMakeScale(1.0, 1.0);
+          }];
+        }];
+        
+}
+
+- (IBAction)onContactButtonTapped:(UIButton *)sender {
+    
+    [self.delegate didTapContactButton:sender onCell:self];
+    
+        [UIView animateWithDuration:0.1f animations:^{
+            self.contactButton.transform = CGAffineTransformMakeScale(1.2, 1.2);
+        } completion:
+         ^(BOOL finished) {
+             [UIView animateWithDuration:0.1f animations:^{
+                 self.contactButton.transform = CGAffineTransformMakeScale(1.0, 1.0);
+             }];
+         }];  
+
+    
     
 }
-- (IBAction)onShareButtonTapped:(id)sender {
+
+
+- (IBAction)onShareButtonTapped:(UIButton *)sender
+{
+    
+    [self.delegate didTapShareButton:sender onCell:self];
+    
+        [UIView animateWithDuration:0.1f animations:^{
+            self.shareButton.transform = CGAffineTransformMakeScale(1.2, 1.2);
+        } completion:
+         ^(BOOL finished) {
+             [UIView animateWithDuration:0.1f animations:^{
+                 self.shareButton.transform = CGAffineTransformMakeScale(1.0, 1.0);
+             }];
+         }];
+    
 }
-- (IBAction)onMoreButtonTapped:(id)sender {
+
+- (IBAction)onMoreButtonTapped:(UIButton *)sender
+{
     [self.delegate didTapMoreButton:sender onCell:self];
     
-    [UIView animateWithDuration:0.1f animations:^{
-        self.moreButton.transform = CGAffineTransformMakeScale(1.2, 1.2);
-    } completion:
-     ^(BOOL finished) {
-         [UIView animateWithDuration:0.1f animations:^{
-             self.moreButton.transform = CGAffineTransformMakeScale(1.0, 1.0);
+        [UIView animateWithDuration:0.1f animations:^{
+            self.moreButton.transform = CGAffineTransformMakeScale(1.2, 1.2);
+        } completion:
+         ^(BOOL finished) {
+             [UIView animateWithDuration:0.1f animations:^{
+                 self.moreButton.transform = CGAffineTransformMakeScale(1.0, 1.0);
+             }];
          }];
-     }];  
 }
-- (IBAction)onLocationButtonTapped:(id)sender {
+ 
+
+- (IBAction)onLocationButtonTapped:(UIButton *)sender
+{
+    [self.delegate didTapLocationButton:sender onCell:self];
 }
 
 @end

@@ -32,6 +32,8 @@
 @property (nonatomic, strong) PFGeoPoint *usersLocation;
 @property Animals *animals;
 @property Animals *animalPost;
+@property PostTableViewCell *postCell;
+@property UITableViewCell *selectedCell;
 
 @end
 
@@ -111,7 +113,7 @@
     PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
     self.posts = self.animals.animalArray;
     Animal *animal= self.posts[indexPath.section];
-    cell.delegate = self;
+//    cell.delegate = self;
     
     cell.animalPost = animal;
 
@@ -123,16 +125,16 @@
     cell.numberOfCommentsLabel.text = [NSString stringWithFormat:@"%@",[animal.numberOfComments stringValue]];
     cell.captionTextView.text = animal.caption;
     cell.locationLabel.text = animal.locationAddress;
-   
+    cell.delegate = self;
     return cell;
     
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-//    PostTableViewCell *postCell = (PostTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-    [self performSegueWithIdentifier:@"CommentSegue" sender:indexPath];
-}
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+////    PostTableViewCell *postCell = (PostTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+//    [self performSegueWithIdentifier:@"CommentSegue" sender:indexPath];
+//}
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     PostHeaderTableViewCell *postHeaderCell = [tableView dequeueReusableCellWithIdentifier:@"PostHeaderCell"];
@@ -151,21 +153,98 @@
    
     return 50.0;
 }
+//
+
+#pragma mark - PostTableViewCell Delegate Methods
+
+
+-(void)didTapCommentButton:(UIButton *)sender onCell:(PostTableViewCell *)cell
+{
+    self.postCell = cell;
+    [self performSegueWithIdentifier:@"CommentSegue" sender:nil];
+    
+    NSLog(@"Comment Button Pressed");
+}
+
+-(void)didTapMoreButton:(UIButton *)sender onCell:(PostTableViewCell *)cell
+{
+      NSLog(@"More Button Pressed");
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Actions" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *report = [UIAlertAction actionWithTitle:@"Report this post" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
+    {
+        //Add method call
+    }];
+    
+    UIAlertAction *deleteAnimalPost = [UIAlertAction actionWithTitle:@"Delete this post" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
+    {
+        [self.animals deleteAnimalPostfromArray:self.posts atIndex:cell withCompletion:^{
+            [self.tableView reloadData];
+        }];
+    }];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    if(cell.animalPost.createdBy == self.currentUser)
+    {
+        [alert addAction:deleteAnimalPost];
+    }
+    else
+    {
+        [alert addAction:report];
+    }
+    
+    [alert addAction:cancel];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+-(void)didTapContactButton:(UIButton *)sender onCell:(PostTableViewCell *)cell
+{
+      NSLog(@"Contact Button Pressed");
+}
+
+-(void)didTapShareButton:(UIButton *)sender onCell:(PostTableViewCell *)cell
+{
+    NSLog(@"Share Button Pressed");
+}
+
+
+-(void)didTapLocationButton:(UIButton *)sender onCell:(PostTableViewCell *)cell
+{
+    NSLog(@"Location Button Pressed");
+}
+
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
-// Pass corresponding animal post to CommentViewController
-    if ([segue.identifier isEqualToString:@"CommentSegue"])
+    if([segue.identifier isEqualToString:@"CommentSegue"])
     {
-        
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         CommentViewController *vc = segue.destinationViewController;
-        vc.animal =[self.animals.animalArray objectAtIndex:indexPath.row];
-        NSLog(@"%@",vc.animal);
         
- 
-    }
-}
+        vc.animal = self.postCell.animalPost;
 
+    }
+//    CommentViewController *vc = segue.destinationViewController;
+////    UIViewController *controller;
+////
+////    if ([vc isKindOfClass:[UINavigationController class]]) {
+////        UINavigationController *navController = (UINavigationController *)vc;
+////        controller = [navController.viewControllers firstObject];
+////    
+////    }
+////    
+////    else
+////    {
+////        controller = vc;
+////    }
+//    
+////    if ([vc isKindOfClass:[CommentViewController class]])
+////    {
+////        <#statements#>
+////    }
+////    
+//    vc.animal = sender.animalPost;
+//    
+}
 @end

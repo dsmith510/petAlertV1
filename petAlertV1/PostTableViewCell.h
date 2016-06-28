@@ -1,4 +1,4 @@
-//
+ //
 //  PostTableViewCell.h
 //  petAlertV1
 //
@@ -14,7 +14,6 @@
 
 // Classes
 @class User;
-@class Post;
 @class PostTableViewCell;
 @class Animals;
 @class Animal;
@@ -29,6 +28,10 @@
 
 - (void) didTapMoreButton: (UIButton *)sender onCell:(PostTableViewCell *)cell;
 
+- (void) didTapShareButton: (UIButton *)sender onCell:(PostTableViewCell *)cell;
+
+- (void) didTapLocationButton: (UIButton *)sender onCell:(PostTableViewCell *)cell;
+
 @end
 
 @interface PostTableViewCell : UITableViewCell
@@ -37,6 +40,7 @@
 @property (nonatomic, assign) id <PostTableViewCellDelegate> delegate;
 @property (nonatomic) User *currentUser;
 @property (nonatomic) Animal *animalPost;
+
 
 // Outlets
 @property (weak, nonatomic) IBOutlet PFImageView *animalImageView;

@@ -10,6 +10,7 @@
 		CD04C1F01D1E14980020B66A /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD04C1EF1D1E14980020B66A /* CommentViewController.m */; };
 		CD04C1F31D1EE0D80020B66A /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD04C1F21D1EE0D80020B66A /* CommentTableViewCell.m */; };
 		CD04C1F61D20300E0020B66A /* SearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD04C1F51D20300E0020B66A /* SearchTableViewCell.m */; };
+		CD1D53291D22265C00BF5306 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD1D53281D22265C00BF5306 /* Main.storyboard */; };
 		CD292F9F1C5BB5FE00DC1DE9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CD292F9E1C5BB5FE00DC1DE9 /* main.m */; };
 		CD292FA21C5BB5FE00DC1DE9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CD292FA11C5BB5FE00DC1DE9 /* AppDelegate.m */; };
 		CD292FA51C5BB5FE00DC1DE9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD292FA41C5BB5FE00DC1DE9 /* ViewController.m */; };
@@ -53,7 +54,6 @@
 		CD29301A1C5BC9AB00DC1DE9 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2930191C5BC9AB00DC1DE9 /* Post.m */; };
 		CD29301D1C5BC9C500DC1DE9 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = CD29301C1C5BC9C500DC1DE9 /* Comment.m */; };
 		CD2930201C5D27AC00DC1DE9 /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD29301F1C5D27AC00DC1DE9 /* LocationViewController.m */; };
-		CD7EF9471CAB453700BECB03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD7EF9451CAB453700BECB03 /* Main.storyboard */; };
 		CDC25ED91CB47F990086110F /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC25ED81CB47F990086110F /* TabBarController.m */; };
 		CDF0618D1D01106F005570A6 /* Animals.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF0618C1D01106F005570A6 /* Animals.m */; };
 		CDF061901D011093005570A6 /* Animal.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF0618F1D011093005570A6 /* Animal.m */; };
@@ -76,6 +76,7 @@
 		CD04C1F21D1EE0D80020B66A /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
 		CD04C1F41D20300E0020B66A /* SearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewCell.h; sourceTree = "<group>"; };
 		CD04C1F51D20300E0020B66A /* SearchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewCell.m; sourceTree = "<group>"; };
+		CD1D53281D22265C00BF5306 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../../../../.Trash/Main.storyboard; sourceTree = "<group>"; };
 		CD292F9A1C5BB5FE00DC1DE9 /* petAlertV1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = petAlertV1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD292F9E1C5BB5FE00DC1DE9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CD292FA01C5BB5FE00DC1DE9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -137,7 +138,6 @@
 		CD29301C1C5BC9C500DC1DE9 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		CD29301E1C5D27AC00DC1DE9 /* LocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationViewController.h; sourceTree = "<group>"; };
 		CD29301F1C5D27AC00DC1DE9 /* LocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationViewController.m; sourceTree = "<group>"; };
-		CD7EF9461CAB453700BECB03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CDC25ED71CB47F990086110F /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		CDC25ED81CB47F990086110F /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		CDF0618B1D01106F005570A6 /* Animals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animals.h; sourceTree = "<group>"; };
@@ -257,7 +257,7 @@
 		CD292FC61C5BB6C100DC1DE9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				CD7EF9451CAB453700BECB03 /* Main.storyboard */,
+				CD1D53281D22265C00BF5306 /* Main.storyboard */,
 				CD2930131C5BBD1300DC1DE9 /* LoginAndRegistration.storyboard */,
 				CD292FAE1C5BB5FE00DC1DE9 /* LaunchScreen.storyboard */,
 			);
@@ -448,7 +448,7 @@
 				CD2930141C5BBD1300DC1DE9 /* LoginAndRegistration.storyboard in Resources */,
 				CD292FB01C5BB5FE00DC1DE9 /* LaunchScreen.storyboard in Resources */,
 				CD292FAD1C5BB5FE00DC1DE9 /* Assets.xcassets in Resources */,
-				CD7EF9471CAB453700BECB03 /* Main.storyboard in Resources */,
+				CD1D53291D22265C00BF5306 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,14 +516,6 @@
 				CD292FAF1C5BB5FE00DC1DE9 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		CD7EF9451CAB453700BECB03 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CD7EF9461CAB453700BECB03 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
